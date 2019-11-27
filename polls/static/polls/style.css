@@ -1,3 +1,24 @@
-li a{
-    color: green;
+h2{
+margin-top: 50px;
+}
+.question {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px  0 50px 0;
+    background: rgb(249, 249, 249);
+    color: black;
+    box-shadow: 0.5px 0.5px;
+    padding: 10px; 0 10px 0;
+}
+.question-text{
+    padding: 20px;
+}
+.question a{
+    color: black;}
+
+.question:hover {
+    box-shadow: 2px 2px;
+}
+h3{
+    margin: 10px;
 }
