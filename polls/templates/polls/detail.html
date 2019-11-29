@@ -21,7 +21,10 @@
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
         <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
     {% endfor %}
-    <input type="submit" value="Vote">
+        <p>{% if not user.is_authenticated %} Only logged user in can vote. {% endif %}</p>
+
+    <input type="submit" value="Vote" {% if not user.is_authenticated %} Disabled {% endif %}>
+        <a class="link" href="{% url 'polls:results' question.id %}"> Results</a>
     </form>
     </div>
 </div>

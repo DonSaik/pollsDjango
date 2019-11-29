@@ -16,6 +16,10 @@ margin-top: 50px;
 .question a{
     color: black;}
 
+.link {
+    color: blue;
+}
+
 .question:hover {
     box-shadow: 2px 2px;
 }

@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect
 
 # Create your views here.
 from .models import Question, Choice
 from django.urls import reverse
 from django.views import generic
+
 from django.http import Http404
 
 
@@ -21,6 +24,7 @@ from django.http import Http404
 # def results(request, question_id):
 #     response = "Yourre looking %s"
 #     return HttpResponse(response % question_id)
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -41,6 +45,7 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
+@login_required
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
