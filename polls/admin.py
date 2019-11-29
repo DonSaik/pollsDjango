@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Question, Choice
+from .models import Question, Choice, Vote
 
 
 class ChoiceInine(admin.TabularInline):
@@ -12,6 +12,7 @@ class ChoiceInine(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['question_text']}),
+        (None, {'fields': ['voted_user']}),
     ]
     inlines = [ChoiceInine]
     list_display = ('id', 'question_text', 'created_at')
@@ -20,4 +21,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Question, QuestionAdmin)
-
+admin.site.register(Vote)
