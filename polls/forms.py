@@ -23,7 +23,7 @@ class PollForm(ModelForm):
 ChoiceFormset = modelformset_factory(
     Choice,
     fields=('choice_text', ),
-    min_num=2,
+    min_num=1,
     extra=1,
     widgets={
         'choice_text': forms.TextInput(

@@ -44,9 +44,9 @@ class PollsView(generic.ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            return Question.objects.filter(groups__in=self.request.user.groups.all())
+            return Question.objects.filter(groups__in=self.request.user.groups.all()).order_by('-created_at')
         else:
-            return Question.objects.all()
+            return Question.objects.order_by('-created_at')
 
 
 class DetailView(generic.DetailView):
@@ -116,7 +116,6 @@ def user_polls_view(request):
 
     question_list = Question.objects.filter(user=request.user)
 
-    print(question_list[0])
     return render(request, 'polls/user/userpolls.html', {
         'questions': question_list,
     })
@@ -130,7 +129,7 @@ def user_polls_create_view(request):
         formset = ChoiceFormset(request.POST)
         # check whether it's valid:
         if form.is_valid() and formset.is_valid():
-            question = form.save(commit=False)
+            question = form.save()
             question.user = request.user
             question.save()
             for form in formset:

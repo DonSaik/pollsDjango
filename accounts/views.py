@@ -17,6 +17,8 @@ def signup_view(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
+            user.groups.add(Group.objects.first())
+            user.save()
             login(request, user)
             return redirect('/polls')
     else:
