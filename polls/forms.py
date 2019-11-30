@@ -1,16 +1,6 @@
 from django.forms import ModelForm, modelformset_factory, inlineformset_factory
-from django import  forms
+from django import forms
 from polls.models import Question, Choice
-
-
-class ChoiceForm(forms.Form):
-    name = forms.CharField(
-        label='Book Name',
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Enter Book Name here'
-        })
-    )
 
 
 class PollForm(ModelForm):
@@ -29,7 +19,6 @@ ChoiceFormset = modelformset_factory(
         'choice_text': forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter Author Name here'
             }
         )
     }

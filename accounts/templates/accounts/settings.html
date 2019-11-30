@@ -1,0 +1,24 @@
+{% extends "website/base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}" type="text/css">
+<div class="mx-auto ">
+    <h2>Sign up Form</h2>
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <p>
+              {{ field.label_tag }}<br>
+
+                {% for f in field%}
+                    {{ f }} <br>
+                {% endfor %}
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+          {% endfor %}
+          <button type="submit">Save</button>
+        </form>
+</div>
+{% endblock %}

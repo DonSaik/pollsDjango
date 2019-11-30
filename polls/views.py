@@ -7,7 +7,7 @@ from .models import Question, Choice, Vote
 from django.urls import reverse
 from django.views import generic
 from polls.forms import PollForm, ChoiceFormset
-
+from django.contrib.auth.models import User, Group
 from django.http import Http404
 
 
@@ -41,6 +41,9 @@ class PollsView(generic.ListView):
     template_name = 'polls/polls.html'
     context_object_name = 'latest_poll_list'
     paginate_by = 7
+
+    def get_queryset(self):
+        return Question.objects.filter()
 
 
 class DetailView(generic.DetailView):
