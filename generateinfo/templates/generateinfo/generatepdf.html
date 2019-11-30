@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'generateinfo/pdf/style.css' %}" type="text/css">
+    <style>
+         .choices{
+            border-bottom: 0.5px solid gray;
+        }
+        th{
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<p>{{ today }} </p>
+<table>
+          <tr>
+            <th>
+              Question id
+            </th>
+            <th>
+              Question text
+            </th>
+            <th>
+              Created at
+            </th>
+               <th>
+               Groups
+            </th>
+          </tr>
+          <tr>
+            <td>
+              {{ data.id}}
+            </td>
+            <td>
+              {{ data.question_text}}
+            </td>
+            <td>
+              {{ data.created_at}}
+            </td>
+            <td>
+              {% for g in data.groups.all %}
+                {{ g }} <br>
+             {% endfor %}
+            </td>
+          </tr>
+            <tr>
+                <th colspan="2">Choices: </th>
+                <th colspan="2">Votes: </th>
+            </tr>
+            {% for c in data.choice_set.all %}
+                <tr class="choices">
+                    <td colspan="2">{{c.choice_text }}</td>
+                    <td colspan="2">{{c.vote_set.count}}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+
+</body>
+</html>

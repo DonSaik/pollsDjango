@@ -11,6 +11,8 @@
     {% for question in questions %}
     <div class="question ">
         <a href="{% url 'polls:detail' question.id %}"> <div class="question-text">{{ question.question_text }}</div></a>
+        <a href="{% url 'generateinfo:genpdf' question.id %}">Download pdf</a>
+        <a href="{% url 'generateinfo:genexcel' question.id %}">Download excel</a>
     </div>
 
     {% endfor %}

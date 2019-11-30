@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('polls.urls'), name='polls'),
     path('', include('django.contrib.auth.urls')),
     path('', include('accounts.urls')),
+    path('', include('generateinfo.urls')),
 ]
