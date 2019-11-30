@@ -6,6 +6,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, HttpRespon
 from .models import Question, Choice, Vote
 from django.urls import reverse
 from django.views import generic
+from polls.forms import PollForm, ChoiceFormset
 
 from django.http import Http404
 
@@ -36,11 +37,10 @@ class IndexView(generic.ListView):
 
 
 class PollsView(generic.ListView):
+    model = Question
     template_name = 'polls/polls.html'
     context_object_name = 'latest_poll_list'
-
-    def get_queryset(self):
-        return Question.objects.all
+    paginate_by = 7
 
 
 class DetailView(generic.DetailView):
@@ -102,3 +102,76 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+@login_required
+def user_polls_view(request):
+
+    question_list = Question.objects.filter(user=request.user)
+
+    print(question_list[0])
+    return render(request, 'polls/user/userpolls.html', {
+        'questions': question_list,
+    })
+
+
+@login_required
+def user_polls_create_view(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = PollForm(request.POST)
+        formset = ChoiceFormset(request.POST)
+        # check whether it's valid:
+        if form.is_valid() and formset.is_valid():
+            question = form.save(commit=False)
+            question.user = request.user
+            question.save()
+            for form in formset:
+                # so that `book` instance can be attached.
+                choice = form.save(commit=False)
+                choice.question = question
+                choice.save()
+            return render(request, 'polls/detail.html', {
+                'question': question})
+
+        # if a GET (or any other method) we'll create a blank form
+    else:
+        form = PollForm()
+
+    return render(request, 'polls/user/createpoll.html',
+                  {'formPoll': form, 'formset': ChoiceFormset(queryset=Choice.objects.none()),
+                   })
+
+
+@login_required
+def user_polls_edit_view(request, question_id):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        current_question = Question.objects.get(id=question_id)
+        form = PollForm(request.POST, instance=current_question)
+        current_choices = Choice.objects.filter(question=current_question)
+        formset = ChoiceFormset(request.POST, instance=current_question)
+        # check whether it's valid:
+        if form.is_valid() and formset.is_valid:
+            question = form.save(commit=False)
+            question.save()
+            for form in formset:
+                # so that `book` instance can be attached.
+                choice = form.save(commit=False)
+                choice.save()
+            return render(request, 'polls/detail.html', {
+                'question': question})
+
+        # if a GET (or any other method) we'll create a blank form
+
+    try:
+        my_record = Question.objects.get(id=question_id)
+        form = PollForm(instance=my_record)
+        formset = ChoiceFormset(instance=my_record)
+    except KeyError:
+        HttpResponse("Something went wrong!")
+
+    return render(request, 'polls/user/editpoll.html',
+                  {'formPoll': form, 'formset': formset,
+                   'question': my_record,
+                   })

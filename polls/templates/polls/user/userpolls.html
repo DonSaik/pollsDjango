@@ -1,0 +1,22 @@
+{% extends "website/base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}" type="text/css">
+<div class="col mx-auto col-md-6">
+        <h2>Polls:</h2>
+        <hr>
+
+
+    {% if questions %}
+    {% for question in questions %}
+    <div class="question ">
+        <a href="{% url 'polls:detail' question.id %}"> <div class="question-text">{{ question.question_text }}</div></a>
+    </div>
+
+    {% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</div>
+
+{% endblock %}

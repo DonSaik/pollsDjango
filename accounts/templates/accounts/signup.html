@@ -2,24 +2,20 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}" type="text/css">
-<div class="col mx-auto">
-    <div class="mx-auto col-md-6">
-        <h2>Sign up Form</h2>
-    </div>
-<div class="mx-auto col-md-6">
-<form method="post">
-  {% csrf_token %}
-  {% for field in form %}
-    <p>
-      {{ field.label_tag }}<br>
-      {{ field }}
-      {% for error in field.errors %}
-        <p style="color: red">{{ error }}</p>
-      {% endfor %}
-    </p>
-  {% endfor %}
-  <button type="submit">Sign up</button>
-</form>
-    <div class="mx-auto col-md-6">
-    </div>
+<div class="mx-auto ">
+    <h2>Sign up Form</h2>
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <p>
+              {{ field.label_tag }}<br>
+              {{ field }}
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+          {% endfor %}
+          <button type="submit">Sign up</button>
+        </form>
+</div>
 {% endblock %}
