@@ -11,7 +11,7 @@ class ChoiceInine(admin.TabularInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['question_text', 'user']}),
+        (None, {'fields': ['question_text', 'groups', 'user']}),
     ]
     inlines = [ChoiceInine]
     list_display = ('id', 'question_text', 'created_at')

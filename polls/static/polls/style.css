@@ -13,11 +13,15 @@ margin-top: 50px;
 .question-text{
     padding: 20px;
 }
+.question-user-text{
+    color: gray;
+    font-size: smaller;
+}
 .question a{
     color: black;}
 
 .link {
-    color: blue;
+    color: blue !important;
 }
 
 .question:hover {

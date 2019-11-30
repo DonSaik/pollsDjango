@@ -16,25 +16,36 @@
 
     <form action="{% url 'polls:user-create-poll' %}" method="post">
     {% csrf_token %}
-    {{ formPoll }}
+          {% for field in formPoll %}
+            <p>
+              {{ field.label_tag }}<br>
+
+                {% for f in field%}
+                    {{ f }} <br>
+                {% endfor %}
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+          {% endfor %}
         <div>
             {{ formset.management_form }}
         <div id="form_set">
             {% for form in formset.forms %}
                 {{form.non_field_errors}}
                 {{form.errors}}
-                <table class='no_error'>
+                <p class='no_error'>
                     {{ form }}
 
-                </table>
+                </p>
             {% endfor %}
         </div>
         <input type="button" value="Add More" id="add_more">
             <input type="button" value="Delete One" id="delete_one">
         <div id="empty_form" style="display:none">
-            <table class='no_error'>
+            <p class='no_error'>
                 {{ formset.empty_form }}
-            </table>
+            </p>
         </div>
         </div>
 

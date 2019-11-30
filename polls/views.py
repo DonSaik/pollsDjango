@@ -43,7 +43,10 @@ class PollsView(generic.ListView):
     paginate_by = 7
 
     def get_queryset(self):
-        return Question.objects.filter()
+        if self.request.user.is_authenticated:
+            return Question.objects.filter(groups__in=self.request.user.groups.all())
+        else:
+            return Question.objects.all()
 
 
 class DetailView(generic.DetailView):
@@ -97,8 +100,9 @@ def vote(request, question_id):
             selected_choice.votes += 1
             selected_choice.save()
         else:
+            checked_choice = Vote.objects.get(user=request.user, question=question).choice
             return render(request, 'polls/detail.html', {
-                'question': question,
+                'question': question, 'checked_choice': checked_choice,
                 'error_message': "You have already voted.",
             })
         # Always return an HttpResponseRedirect after successfully dealing

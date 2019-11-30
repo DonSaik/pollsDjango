@@ -6,7 +6,9 @@
     <div class="mx-auto col-md-6">
         <h2>Polls:</h2>
         <hr>
-
+        {% if user.is_authenticated %}
+        <p>Polls preferences can be changed in settings</p>
+        {% endif %}
     {% if latest_poll_list %}
     {% if is_paginated %}
         <div class="pagination">
@@ -25,7 +27,10 @@
 {% endif %}
     {% for question in latest_poll_list %}
     <div class="question ">
-        <a href="{% url 'polls:detail' question.id %}"> <div class="question-text">{{ question.question_text }}</div></a>
+        <a href="{% url 'polls:detail' question.id %}">
+            <div class="question-text">{{ question.question_text }} <br> <span class="question-user-text">{{ question.user }}</span></div>
+
+        </a>
     </div>
 
     {% endfor %}
