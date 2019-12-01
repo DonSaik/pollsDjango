@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LogoutView
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('polls.urls'), name='polls'),
     path('', include('django.contrib.auth.urls')),
     path('', include('accounts.urls')),
     path('', include('generateinfo.urls')),
     path('', include('pollEmail.urls')),
-]
+    prefix_default_language=False
+)
