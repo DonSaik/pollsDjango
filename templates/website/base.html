@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 <html lang="en">
 <head>
      <!-- Required meta tags -->
@@ -8,7 +9,7 @@
     <!-- Bootstrap CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Kursinis</title>
 </head>
 <body>
 
@@ -21,39 +22,39 @@
     <ul class="navbar-nav">
         {% url 'polls:polls' as link %}
       <li class="{% if link  == request.path %}active{% endif %} nav-item ">
-        <a  class="  nav-link" href="{% url 'polls:polls' %}">Polls</a>
+        <a  class="  nav-link" href="{% url 'polls:polls' %}">{% trans "Polls" %}</a>
       </li>
         {% if not user.is_authenticated %}
         {% url 'accounts:signup' as link %}
       <li class="{% if link  == request.path %}active{% endif %} nav-item ">
-        <a  class="  nav-link" href="{% url 'accounts:signup' %}">SignUp </a>
+        <a  class="  nav-link" href="{% url 'accounts:signup' %}">{% trans  "SignUp" %}</a>
       </li>
         {% url 'login' as link %}
       <li class=" {% if link == request.path %}active{% endif %} nav-item ">
-        <a class="nav-link" href="/login/">Login</a>
+        <a class="nav-link" href="/login/">{% trans "Login" %}</a>
       </li>
         {% else %}
         <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Polls</a>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% trans "My Polls" %}</a>
     <div class="dropdown-menu">
         {% url 'polls:user-polls' as link %}
-          <a class=" {% if link == request.path %}active{% endif %} dropdown-item" href="{% url 'polls:user-polls' %}">My polls</a>
+          <a class=" {% if link == request.path %}active{% endif %} dropdown-item" href="{% url 'polls:user-polls' %}">{% trans "My polls" %}</a>
             {% url 'polls:user-create-poll' as link %}
-          <a class=" {% if link == request.path %}active{% endif %} dropdown-item" href="{% url 'polls:user-create-poll' %}">Create poll</a>
+          <a class=" {% if link == request.path %}active{% endif %} dropdown-item" href="{% url 'polls:user-create-poll' %}">{% trans "Create poll" %}</a>
     </div>
   </li>
         <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{user}}</a>
     <div class="dropdown-menu">
         {% url 'accounts:settings' as link %}
-      <a class="{% if link  == request.path %}active{% endif %} dropdown-item" href="{% url 'accounts:settings' %}">Settings</a>
-        {% if perms.user.can_send_email %}
+      <a class="{% if link  == request.path %}active{% endif %} dropdown-item" href="{% url 'accounts:settings' %}">{% trans "Settings" %}</a>
+        {% if perms.auth.can_send_email %}
         {% url 'pollEmail:sendemail' as link %}
-      <a class="{% if link  == request.path %}active{% endif %} dropdown-item" href="{% url 'pollEmail:sendemail' %}">Send email</a>
+      <a class="{% if link  == request.path %}active{% endif %} dropdown-item" href="{% url 'pollEmail:sendemail' %}">{% trans "Send email" %}</a>
         {% endif %}
       <div class="dropdown-divider"></div>
        {% url 'logout' as link %}
-      <a  class="{% if link  == request.path %}active{% endif %}  dropdown-item" href="{% url 'logout' %}">Logout </a>
+      <a  class="{% if link  == request.path %}active{% endif %}  dropdown-item" href="{% url 'logout' %}">{% trans "Logout" %} </a>
     </div>
   </li>
 

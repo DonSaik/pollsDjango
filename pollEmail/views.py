@@ -7,7 +7,7 @@ from .forms import EmailForm
 # Create your views here.
 
 
-@permission_required('user.can_send_email')
+@permission_required('auth.can_send_email')
 def email_view(request):
     if request.method == 'POST':
         form = EmailForm(request.POST)

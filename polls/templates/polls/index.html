@@ -11,7 +11,10 @@
     {% if latest_poll_list %}
     {% for question in latest_poll_list %}
     <div class="question mx-auto col-md-6">
-          <div class="question-text">{{ question.question_text }} <br> <span class="question-user-text">{{ question.user }}</span></div>
+          <a href="{% url 'polls:detail' question.id %}">
+            <div class="question-text">{{ question.question_text }} <br> <span class="question-user-text">{{ question.user }}</span></div>
+
+        </a>
     </div>
 
     {% endfor %}
