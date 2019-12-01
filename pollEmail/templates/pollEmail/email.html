@@ -1,0 +1,14 @@
+{% extends "website/base.html" %}
+{% block content %}
+<div class="mx-auto ">
+    <h2>Send email</h2>
+<form action="/email/" method="post">
+    {% csrf_token %}
+    {% for f in form %}
+         {{ f.label_tag }}<br>
+        {{ f }}<br>
+    {% endfor %}
+    <input type="submit" value="OK">
+</form>
+</div>
+{% endblock %}

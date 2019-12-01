@@ -47,6 +47,10 @@
     <div class="dropdown-menu">
         {% url 'accounts:settings' as link %}
       <a class="{% if link  == request.path %}active{% endif %} dropdown-item" href="{% url 'accounts:settings' %}">Settings</a>
+        {% if perms.user.can_send_email %}
+        {% url 'pollEmail:sendemail' as link %}
+      <a class="{% if link  == request.path %}active{% endif %} dropdown-item" href="{% url 'pollEmail:sendemail' %}">Send email</a>
+        {% endif %}
       <div class="dropdown-divider"></div>
        {% url 'logout' as link %}
       <a  class="{% if link  == request.path %}active{% endif %}  dropdown-item" href="{% url 'logout' %}">Logout </a>
