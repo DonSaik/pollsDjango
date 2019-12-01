@@ -2,10 +2,11 @@ from django.forms import ModelForm, modelformset_factory, inlineformset_factory
 from django import forms
 from polls.models import Question, Choice
 from django.contrib.auth.models import Group
+from django.utils.translation import ugettext_lazy as _
 
 
 class PollForm(ModelForm):
-    groups = forms.ModelMultipleChoiceField(queryset=Group.objects.all(),
+    groups = forms.ModelMultipleChoiceField(label=_('Groups'), queryset=Group.objects.all(),
                                             widget=forms.CheckboxSelectMultiple())
 
     class Meta:

@@ -1,9 +1,10 @@
 {% extends "website/base.html" %}
+{% load i18n %}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}" type="text/css">
 <div class="mx-auto ">
-    <h2>Sign up Form</h2>
+    <h2>{% trans "Sign up Form" %}</h2>
         <form method="post">
           {% csrf_token %}
           {% for field in form %}
@@ -15,7 +16,7 @@
               {% endfor %}
             </p>
           {% endfor %}
-          <button type="submit">Sign up</button>
+          <button type="submit">{% trans "Sign up" %}</button>
         </form>
 </div>
 {% endblock %}

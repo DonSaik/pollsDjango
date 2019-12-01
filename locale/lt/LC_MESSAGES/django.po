@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-01 10:50+0000\n"
+"POT-Creation-Date: 2019-12-01 13:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,50 +20,170 @@ msgstr ""
 "11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
 "1 : n % 1 != 0 ? 2: 3);\n"
 
-#: kursinis/settings.py:142
+#: accounts/forms.py:8 polls/forms.py:9
+msgid "Groups"
+msgstr "Grupės"
+
+#: accounts/forms.py:9
+msgid "Choose what type of polls you like."
+msgstr "Pasirink kokius tipus apklausų mėgsti."
+
+#: accounts/templates/accounts/settings.html:7 templates/website/base.html:49
+msgid "Settings"
+msgstr "Nustatymai"
+
+#: accounts/templates/accounts/settings.html:22
+msgid "Save"
+msgstr "Išsaugoti"
+
+#: accounts/templates/accounts/signup.html:7
+msgid "Sign up Form"
+msgstr "Registracijos forma"
+
+#: accounts/templates/accounts/signup.html:19
+msgid "Sign up"
+msgstr "Registruotis"
+
+#: accounts/templates/registration/login.html:7
+msgid "Log in"
+msgstr "Prisijugti"
+
+#: accounts/templates/registration/login.html:9
+msgid "Cam't find user with such information. Please try again."
+msgstr ""
+"Nepavyksta surati naudotojo su tokiais duomenimis. Pabandykite dar kartą"
+
+#: accounts/templates/registration/login.html:17
+msgid "Please login to see this page."
+msgstr "Prisijunkite, kad pamatytumėte šį puslapį."
+
+#: accounts/templates/registration/login.html:25 templates/website/base.html:33
+msgid "Login"
+msgstr "Prisijungti"
+
+#: kursinis/settings.py:145
 msgid "English"
 msgstr ""
 
-#: kursinis/settings.py:143
+#: kursinis/settings.py:146
 msgid "Lithuanian"
 msgstr ""
+
+#: pollEmail/forms.py:6
+msgid "Address"
+msgstr "Adresas"
+
+#: pollEmail/forms.py:7
+msgid "Subject"
+msgstr "Tema"
+
+#: pollEmail/forms.py:8
+msgid "Message"
+msgstr "Pranešimas"
+
+#: pollEmail/templates/pollEmail/email.html:5 templates/website/base.html:52
+msgid "Send email"
+msgstr "Siųsti el. laišką"
+
+#: pollEmail/templates/pollEmail/email.html:12
+msgid "Send"
+msgstr "Siųsti"
+
+#: polls/models.py:8
+msgid "Question text"
+msgstr "Klausimo tekstas"
+
+#: polls/models.py:19
+msgid "Choice text"
+msgstr "Pasirinkimo tekstas"
+
+#: polls/templates/polls/detail.html:8
+msgid "Vote"
+msgstr "Balsuoti"
+
+#: polls/templates/polls/detail.html:25
+msgid "Only logged in user  can vote."
+msgstr "Tik prisijungę naudotojai gali balsuoti."
+
+#: polls/templates/polls/detail.html:28 polls/templates/polls/results.html:8
+msgid "Results"
+msgstr "Rezultatai"
+
+#: polls/templates/polls/index.html:8
+msgid "Recent polls"
+msgstr "Naujausios apklausos"
+
+#: polls/templates/polls/index.html:23
+#: polls/templates/polls/user/userpolls.html:21
+msgid "No polls are available."
+msgstr "Nėra apklausų"
+
+#: polls/templates/polls/pagination.html:6
+msgid "previous"
+msgstr "ankstesnis"
+
+#: polls/templates/polls/pagination.html:9
+msgid "Page"
+msgstr "Puslapis"
+
+#: polls/templates/polls/pagination.html:9
+msgid "of"
+msgstr "iš"
+
+#: polls/templates/polls/pagination.html:12
+msgid "next"
+msgstr "kitas"
+
+#: polls/templates/polls/polls.html:8 templates/website/base.html:24
+msgid "Polls"
+msgstr "Apklausos"
+
+#: polls/templates/polls/polls.html:11
+msgid "Poll preference can be changed in settings"
+msgstr "Apklausų personalizavimas gali būti pakeistas nustatymuose"
+
+#: polls/templates/polls/user/createpoll.html:8 templates/website/base.html:42
+msgid "Create poll"
+msgstr "Sukurti apklausą"
+
+#: polls/templates/polls/user/createpoll.html:44
+msgid "Add More"
+msgstr "Pridėti pasirinkimą"
+
+#: polls/templates/polls/user/createpoll.html:45
+msgid "Delete One"
+msgstr "Ištrinti pasirinkimą"
+
+#: polls/templates/polls/user/createpoll.html:54
+#, fuzzy
+#| msgid "Create poll"
+msgid "Create"
+msgstr "Sukurti apklausą"
+
+#: polls/templates/polls/user/userpolls.html:7 templates/website/base.html:40
+msgid "My polls"
+msgstr "Mano apklausos"
+
+#: polls/templates/polls/user/userpolls.html:15
+msgid "Download pdf"
+msgstr "Parsisiųsti pdf"
+
+#: polls/templates/polls/user/userpolls.html:16
+msgid "Download excel"
+msgstr "Parsisiųsti excel"
 
 #: templates/admin/base_site.html:3
 msgid "Django site admin"
 msgstr ""
 
-#: templates/website/base.html:25
-msgid "Polls"
-msgstr "Apklausos"
-
-#: templates/website/base.html:30
+#: templates/website/base.html:29
 msgid "SignUp"
 msgstr "Registruotis"
 
-#: templates/website/base.html:34
-msgid "Login"
-msgstr "Prisijungti"
-
-#: templates/website/base.html:38
+#: templates/website/base.html:37
 msgid "My Polls"
 msgstr "Mano apklausos"
 
-#: templates/website/base.html:41
-msgid "My polls"
-msgstr "Mano apklausos"
-
-#: templates/website/base.html:43
-msgid "Create poll"
-msgstr "Sukurti apklausa"
-
-#: templates/website/base.html:50
-msgid "Settings"
-msgstr "Nustatymai"
-
-#: templates/website/base.html:53
-msgid "Send email"
-msgstr "Siusti el. pasta"
-
-#: templates/website/base.html:57
+#: templates/website/base.html:56
 msgid "Logout"
 msgstr "Atsijungti"

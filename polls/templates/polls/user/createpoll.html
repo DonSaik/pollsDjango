@@ -1,10 +1,11 @@
 {% extends "website/base.html" %}
+{% load i18n %}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}" type="text/css">
 <div class="col mx-auto">
 <div class="mx-auto col-md-6">
-        <h2>Create poll:</h2>
+        <h2>{% trans "Create poll" %}:</h2>
         <hr>
     </div>
 <div class="col col-md-6 mx-auto question ">
@@ -40,8 +41,8 @@
                 </p>
             {% endfor %}
         </div>
-        <input type="button" value="Add More" id="add_more">
-            <input type="button" value="Delete One" id="delete_one">
+        <input type="button" value="{% trans 'Add More' %}" id="add_more">
+            <input type="button" value="{% trans 'Delete One' %}" id="delete_one">
         <div id="empty_form" style="display:none">
             <p class='no_error'>
                 {{ formset.empty_form }}
@@ -50,7 +51,7 @@
         </div>
 
 <hr>
-    <input type="submit" value="Create" {% if not user.is_authenticated %} Disabled {% endif %}>
+    <input type="submit" value="{% trans 'Create' %}" {% if not user.is_authenticated %} Disabled {% endif %}>
     </form>
     </div>
 </div>

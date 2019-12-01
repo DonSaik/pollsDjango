@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'kursinis.context_processors.language_code',
+                'kursinis.context_processors.language_url',
+
             ],
         },
     },

@@ -1,9 +1,10 @@
 {% extends "website/base.html" %}
+{% load i18n %}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}" type="text/css">
 <div class="col mx-auto col-md-6">
-        <h2>My polls:</h2>
+        <h2>{% trans "My polls" %}:</h2>
         <hr>
 
 
@@ -11,13 +12,13 @@
     {% for question in questions %}
     <div class="question ">
         <a href="{% url 'polls:detail' question.id %}"> <div class="question-text">{{ question.question_text }}</div></a>
-        <a href="{% url 'generateinfo:genpdf' question.id %}">Download pdf</a>
-        <a href="{% url 'generateinfo:genexcel' question.id %}">Download excel</a>
+        <a href="{% url 'generateinfo:genpdf' question.id %}">{% trans "Download pdf" %}</a>
+        <a href="{% url 'generateinfo:genexcel' question.id %}">{% trans "Download excel" %}</a>
     </div>
 
     {% endfor %}
 {% else %}
-    <p>No polls are available.</p>
+    <p>{% trans "No polls are available." %}</p>
 {% endif %}
 </div>
 
