@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class Question(models.Model):
     question_text = models.CharField(_("Question text"), max_length=200)
-    created_at = models.DateTimeField('date_created_at', auto_now=True)
+    created_at = models.DateTimeField('date_created_at', auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     groups = models.ManyToManyField(Group)
 
